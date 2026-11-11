@@ -21,9 +21,20 @@ export async function signUp(formData: FormData) {
   redirect("/dashboard");
 }
 
-export async function login(formData: FormData) {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+export type LoginState = {
+  error: string | null;
+};
+
+export async function login(
+  _previousState: LoginState,
+  formData: FormData,
+): Promise<LoginState> {
+  const email = formData.get("email");
+  const password = formData.get("password");
+
+  if (typeof email !== "string" || typeof password !== "string") {
+    return { error: "Enter your email and password." };
+  }
 
   const supabase = await createClient();
 
@@ -33,7 +44,11 @@ export async function login(formData: FormData) {
   });
 
   if (error) {
-    throw new Error(error.message);
+    if (error.code === "invalid_credentials") {
+      return { error: "Invalid email or password." };
+    }
+
+    return { error: "We couldn't sign you in. Please try again." };
   }
 
   redirect("/dashboard");

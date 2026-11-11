@@ -5,11 +5,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "node --test tests/*.test.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.119.0",
+    "@tiptap/extension-underline": "^3.33.1",
+    "@tiptap/react": "^3.33.1",
+    "@tiptap/starter-kit": "^3.33.1",
     "next": "^15.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

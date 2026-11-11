@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { login } from "@/app/actions/auth";
+import { LoginForm } from "@/app/login/login-form";
 
 export const metadata: Metadata = {
   title: "Log in | Bowles Docs",
@@ -21,31 +21,7 @@ export default function LoginPage() {
           Enter your details to continue to your documentation.
         </p>
 
-        <form className="auth-form" action={login}>
-          <label className="auth-field">
-            <span>Email</span>
-            <input
-              className="auth-input"
-              type="email"
-              name="email"
-              autoComplete="email"
-              required
-            />
-          </label>
-          <label className="auth-field">
-            <span>Password</span>
-            <input
-              className="auth-input"
-              type="password"
-              name="password"
-              autoComplete="current-password"
-              required
-            />
-          </label>
-          <button className="auth-submit" type="submit">
-            Log in
-          </button>
-        </form>
+        <LoginForm />
 
         <p className="auth-switch">
           Don&apos;t have an account? <Link href="/signup">Sign up</Link>
